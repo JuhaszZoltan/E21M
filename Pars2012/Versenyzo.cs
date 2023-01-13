@@ -10,10 +10,10 @@
         public float Eredmeny => Dobasok.Max();
 
         public string Nemzet =>
-            NemzetEsKod.Substring(0, NemzetEsKod.LastIndexOf(' '));
+            NemzetEsKod[..NemzetEsKod.LastIndexOf(' ')];
 
         public string Kod =>
-            NemzetEsKod.Substring(NemzetEsKod.LastIndexOf(' ') + 1).Trim('(', ')');
+            NemzetEsKod[(NemzetEsKod.LastIndexOf(' ') + 1)..].Trim('(', ')');
 
         public Versenyzo(string sor)
         {
@@ -33,7 +33,7 @@
                 };
                 Sorozat += $"{splts[i + 3]};";
             }
-            Sorozat = Sorozat!.Substring(0, Sorozat.Length - 1);
+            Sorozat = Sorozat![..^1];
         }
     }
 }
